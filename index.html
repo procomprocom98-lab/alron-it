@@ -6,6 +6,16 @@
     <title>Alron IT Support - All-Round IT Solutions</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Sembunyikan scrollbar bawaan tapi tetap bisa digeser */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
 </head>
 <body class="bg-white text-slate-800 font-sans antialiased selection:bg-blue-600 selection:text-white">
 
@@ -151,12 +161,12 @@
                 <div class="bg-white border border-slate-200 rounded-2xl p-6 hover:border-blue-500 hover:shadow-xl transition flex flex-col justify-between group">
                     <div>
                         <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center text-xl mb-6 group-hover:bg-blue-600 group-hover:text-white transition shadow-sm">
-                            <i class="fa-solid fa-server"></i>
+                            <i class="fa-solid fa-desktop"></i>
                         </div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-3">IT Hardware & Server</h3>
-                        <p class="text-slate-600 text-sm mb-6 leading-relaxed">Perawatan PC/Laptop kantor, perapian rack server / data center kecil, dan troubleshooting masalah perangkat keras IT.</p>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3">Komputer & Printer</h3>
+                        <p class="text-slate-600 text-sm mb-6 leading-relaxed">Perawatan PC/Laptop kantor, instal ulang, perbaikan printer bermasalah, dan troubleshooting perangkat keras.</p>
                     </div>
-                    <a href="https://wa.me/6281213053566?text=Halo%20Alron%20IT%20Support,%20saya%20tertarik%20dengan%20jasa%20Perawatan%20Hardware%20IT." target="_blank" class="inline-flex items-center space-x-2 text-blue-600 font-semibold text-sm hover:text-blue-700">
+                    <a href="https://wa.me/6281213053566?text=Halo%20Alron%20IT%20Support,%20saya%20tertarik%20dengan%20jasa%20Komputer%20dan%20Printer." target="_blank" class="inline-flex items-center space-x-2 text-blue-600 font-semibold text-sm hover:text-blue-700">
                         <span>Pesan Layanan Ini</span>
                         <i class="fa-solid fa-arrow-right text-xs"></i>
                     </a>
@@ -165,62 +175,67 @@
         </div>
     </section>
 
-    <!-- GALERI / HASIL KERJA LAPANGAN (ALBUM PER PROYEK) -->
-    <section id="galeri" class="py-20 bg-white">
+    <!-- GALERI / HASIL KERJA LAPANGAN (HORIZONTAL SLIDER / GESER SAMPING) -->
+    <section id="galeri" class="py-20 bg-white overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-12">
-                <span class="text-blue-600 text-xs font-bold tracking-widest uppercase bg-blue-50 px-3 py-1 rounded-full border border-blue-200">Dokumentasi Lapangan</span>
-                <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl mt-3">Hasil Kerja & Dokumentasi Proyek</h2>
-                <p class="mt-4 text-slate-600 text-base">Klik salah satu album proyek di bawah untuk melihat kumpulan foto detail pengerjaannya.</p>
+            
+            <!-- Judul & Tombol Panah Geser Kiri-Kanan -->
+            <div class="flex flex-col sm:flex-row items-start sm:items-end justify-between mb-10 gap-4">
+                <div>
+                    <span class="text-blue-600 text-xs font-bold tracking-widest uppercase bg-blue-50 px-3 py-1 rounded-full border border-blue-200">Dokumentasi Lapangan</span>
+                    <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl mt-3">Hasil Kerja & Proyek Kami</h2>
+                    <p class="mt-2 text-slate-600 text-base">Geser ke samping untuk melihat berbagai album proyek lainnya.</p>
+                </div>
+                <!-- Tombol Navigasi Geser -->
+                <div class="flex items-center space-x-2">
+                    <button id="slider-prev" class="w-11 h-11 bg-slate-100 hover:bg-blue-600 hover:text-white text-slate-700 rounded-xl flex items-center justify-center transition shadow-sm border border-slate-200">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </button>
+                    <button id="slider-next" class="w-11 h-11 bg-slate-100 hover:bg-blue-600 hover:text-white text-slate-700 rounded-xl flex items-center justify-center transition shadow-sm border border-slate-200">
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
             </div>
 
             <!-- Filter Tombol Kategori -->
-            <div class="flex flex-wrap justify-center gap-2 mb-10">
+            <div class="flex flex-wrap gap-2 mb-8">
                 <button data-filter="all" class="filter-btn bg-blue-600 text-white px-4 py-2 rounded-xl text-sm font-semibold transition shadow-md">Semua</button>
                 <button data-filter="cctv" class="filter-btn bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-200 px-4 py-2 rounded-xl text-sm font-semibold transition">CCTV & NVR</button>
                 <button data-filter="pabx" class="filter-btn bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-200 px-4 py-2 rounded-xl text-sm font-semibold transition">PABX</button>
                 <button data-filter="network" class="filter-btn bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-200 px-4 py-2 rounded-xl text-sm font-semibold transition">Jaringan & Kabel</button>
+                <button data-filter="hardware" class="filter-btn bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-200 px-4 py-2 rounded-xl text-sm font-semibold transition">Komputer & Printer</button>
             </div>
 
-            <!-- Grid Album Proyek -->
-            <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Kontainer Geser Horizontal (Carousel) -->
+            <div id="gallery-container" class="flex gap-6 overflow-x-auto no-scrollbar scroll-smooth pb-4 pt-1 px-1">
                 
-                <!-- ALBUM 1: CCTV Gudang (Berisi 3 foto khusus proyek ini) -->
-                <div data-category="cctv" class="gallery-item bg-white border border-slate-200 rounded-2xl overflow-hidden group cursor-pointer hover:border-blue-500 hover:shadow-xl transition"
-                     data-title="Pemasangan IP Cam & NVR Area Gudang" 
-                     data-badge="CCTV & NVR" 
-                     data-desc="Pemasangan kamera keamanan high-definition lengkap dengan jalur pipa conduit dan setting NVR di area gudang klien."
-                     data-images="https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=800&q=80, https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80, https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=800&q=80">
+                <!-- ALBUM 1: CCTV -->
+                <div data-category="cctv" class="gallery-item min-w-[300px] sm:min-w-[360px] max-w-[360px] flex-shrink-0 bg-white border border-slate-200 rounded-2xl overflow-hidden group cursor-pointer hover:border-blue-500 hover:shadow-xl transition" data-project="proyek-cctv-gudang">
                     <div class="relative overflow-hidden aspect-video bg-slate-100">
-                        <img src="https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=800&q=80" alt="CCTV Installation" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                        <!-- Badge Jumlah Foto -->
-                        <span class="photo-count-badge absolute top-3 right-3 bg-slate-900/75 backdrop-blur-sm text-white text-xs font-semibold px-2.5 py-1 rounded-lg">
-                            <i class="fa-solid fa-images mr-1"></i> 3 Foto
+                        <img src="https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=800&q=80" alt="CCTV" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <span class="absolute top-3 right-3 bg-slate-900/75 backdrop-blur-sm text-white text-xs font-semibold px-2.5 py-1 rounded-lg">
+                            <i class="fa-solid fa-images mr-1"></i> Album Foto
                         </span>
                         <div class="absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition flex items-end p-4">
-                            <span class="text-xs text-white font-semibold bg-slate-900/80 px-2.5 py-1 rounded-lg"><i class="fa-solid fa-magnifying-glass-plus mr-1"></i> Lihat Album Foto</span>
+                            <span class="text-xs text-white font-semibold bg-slate-900/80 px-2.5 py-1 rounded-lg"><i class="fa-solid fa-magnifying-glass-plus mr-1"></i> Buka Album</span>
                         </div>
                     </div>
                     <div class="p-5">
                         <span class="text-xs font-semibold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-md border border-blue-200">CCTV & NVR</span>
-                        <h3 class="text-lg font-bold text-slate-900 mt-3">Pemasangan IP Cam & NVR Area Gudang</h3>
-                        <p class="text-slate-600 text-sm mt-1">Instalasi rapi menggunakan pipa conduit anti air.</p>
+                        <h3 class="text-lg font-bold text-slate-900 mt-3">Pemasangan IP Cam Gudang & Klinik</h3>
+                        <p class="text-slate-600 text-sm mt-1">Dokumentasi proyek instalasi CCTV di beberapa lokasi.</p>
                     </div>
                 </div>
 
-                <!-- ALBUM 2: Perapian Rack Server (Berisi 2 foto khusus proyek ini) -->
-                <div data-category="network" class="gallery-item bg-white border border-slate-200 rounded-2xl overflow-hidden group cursor-pointer hover:border-blue-500 hover:shadow-xl transition"
-                     data-title="Perapian Rack Server & Switch Kantor" 
-                     data-badge="Jaringan & Kabel" 
-                     data-desc="Manajemen kabel (cable management) pada rack server kantor untuk memudahkan maintenance dan sirkulasi udara perangkat jaringan tetap optimal."
-                     data-images="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=800&q=80, https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80">
+                <!-- ALBUM 2: Jaringan -->
+                <div data-category="network" class="gallery-item min-w-[300px] sm:min-w-[360px] max-w-[360px] flex-shrink-0 bg-white border border-slate-200 rounded-2xl overflow-hidden group cursor-pointer hover:border-blue-500 hover:shadow-xl transition" data-project="proyek-rack-server">
                     <div class="relative overflow-hidden aspect-video bg-slate-100">
-                        <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=800&q=80" alt="Rack Server" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                        <span class="photo-count-badge absolute top-3 right-3 bg-slate-900/75 backdrop-blur-sm text-white text-xs font-semibold px-2.5 py-1 rounded-lg">
-                            <i class="fa-solid fa-images mr-1"></i> 2 Foto
+                        <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=800&q=80" alt="Server" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <span class="absolute top-3 right-3 bg-slate-900/75 backdrop-blur-sm text-white text-xs font-semibold px-2.5 py-1 rounded-lg">
+                            <i class="fa-solid fa-images mr-1"></i> Album Foto
                         </span>
                         <div class="absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition flex items-end p-4">
-                            <span class="text-xs text-white font-semibold bg-slate-900/80 px-2.5 py-1 rounded-lg"><i class="fa-solid fa-magnifying-glass-plus mr-1"></i> Lihat Album Foto</span>
+                            <span class="text-xs text-white font-semibold bg-slate-900/80 px-2.5 py-1 rounded-lg"><i class="fa-solid fa-magnifying-glass-plus mr-1"></i> Buka Album</span>
                         </div>
                     </div>
                     <div class="p-5">
@@ -230,19 +245,15 @@
                     </div>
                 </div>
 
-                <!-- ALBUM 3: Setup Unit PABX (Berisi 2 foto khusus proyek ini) -->
-                <div data-category="pabx" class="gallery-item bg-white border border-slate-200 rounded-2xl overflow-hidden group cursor-pointer hover:border-blue-500 hover:shadow-xl transition"
-                     data-title="Setup Unit PABX & Distribusi Extension" 
-                     data-badge="PABX" 
-                     data-desc="Pemasangan dan konfigurasi sentral PABX Panasonic serta pengecekan jalur kabel line telepon ke tiap ruangan meja staff."
-                     data-images="https://images.unsplash.com/photo-1596526131083-e8c633c948d2?auto=format&fit=crop&w=800&q=80, https://images.unsplash.com/photo-1520923642038-b4259acecbd7?auto=format&fit=crop&w=800&q=80">
+                <!-- ALBUM 3: PABX -->
+                <div data-category="pabx" class="gallery-item min-w-[300px] sm:min-w-[360px] max-w-[360px] flex-shrink-0 bg-white border border-slate-200 rounded-2xl overflow-hidden group cursor-pointer hover:border-blue-500 hover:shadow-xl transition" data-project="proyek-pabx">
                     <div class="relative overflow-hidden aspect-video bg-slate-100">
-                        <img src="https://images.unsplash.com/photo-1596526131083-e8c633c948d2?auto=format&fit=crop&w=800&q=80" alt="PABX Setup" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                        <span class="photo-count-badge absolute top-3 right-3 bg-slate-900/75 backdrop-blur-sm text-white text-xs font-semibold px-2.5 py-1 rounded-lg">
-                            <i class="fa-solid fa-images mr-1"></i> 2 Foto
+                        <img src="https://images.unsplash.com/photo-1596526131083-e8c633c948d2?auto=format&fit=crop&w=800&q=80" alt="PABX" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <span class="absolute top-3 right-3 bg-slate-900/75 backdrop-blur-sm text-white text-xs font-semibold px-2.5 py-1 rounded-lg">
+                            <i class="fa-solid fa-images mr-1"></i> Album Foto
                         </span>
                         <div class="absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition flex items-end p-4">
-                            <span class="text-xs text-white font-semibold bg-slate-900/80 px-2.5 py-1 rounded-lg"><i class="fa-solid fa-magnifying-glass-plus mr-1"></i> Lihat Album Foto</span>
+                            <span class="text-xs text-white font-semibold bg-slate-900/80 px-2.5 py-1 rounded-lg"><i class="fa-solid fa-magnifying-glass-plus mr-1"></i> Buka Album</span>
                         </div>
                     </div>
                     <div class="p-5">
@@ -252,69 +263,21 @@
                     </div>
                 </div>
 
-                <!-- ALBUM 4: Setting Online CCTV -->
-                <div data-category="cctv" class="gallery-item bg-white border border-slate-200 rounded-2xl overflow-hidden group cursor-pointer hover:border-blue-500 hover:shadow-xl transition"
-                     data-title="Setting Online CCTV ke Smartphone Klien" 
-                     data-badge="CCTV & NVR" 
-                     data-desc="Pengujian dan sinkronisasi tampilan kamera pengawas agar bisa dipantau langsung jarak jauh melalui handphone pemilik usaha secara real-time."
-                     data-images="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80, https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=800&q=80">
+                <!-- ALBUM 4: Komputer & Printer -->
+                <div data-category="hardware" class="gallery-item min-w-[300px] sm:min-w-[360px] max-w-[360px] flex-shrink-0 bg-white border border-slate-200 rounded-2xl overflow-hidden group cursor-pointer hover:border-blue-500 hover:shadow-xl transition" data-project="proyek-komputer-printer">
                     <div class="relative overflow-hidden aspect-video bg-slate-100">
-                        <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80" alt="CCTV Mobile Monitoring" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                        <span class="photo-count-badge absolute top-3 right-3 bg-slate-900/75 backdrop-blur-sm text-white text-xs font-semibold px-2.5 py-1 rounded-lg">
-                            <i class="fa-solid fa-images mr-1"></i> 2 Foto
+                        <img src="https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?auto=format&fit=crop&w=800&q=80" alt="Komputer & Printer" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <span class="absolute top-3 right-3 bg-slate-900/75 backdrop-blur-sm text-white text-xs font-semibold px-2.5 py-1 rounded-lg">
+                            <i class="fa-solid fa-images mr-1"></i> Album Foto
                         </span>
                         <div class="absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition flex items-end p-4">
-                            <span class="text-xs text-white font-semibold bg-slate-900/80 px-2.5 py-1 rounded-lg"><i class="fa-solid fa-magnifying-glass-plus mr-1"></i> Lihat Album Foto</span>
+                            <span class="text-xs text-white font-semibold bg-slate-900/80 px-2.5 py-1 rounded-lg"><i class="fa-solid fa-magnifying-glass-plus mr-1"></i> Buka Album</span>
                         </div>
                     </div>
                     <div class="p-5">
-                        <span class="text-xs font-semibold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-md border border-blue-200">CCTV & NVR</span>
-                        <h3 class="text-lg font-bold text-slate-900 mt-3">Setting Online CCTV ke Smartphone</h3>
-                        <p class="text-slate-600 text-sm mt-1">Panduan praktis pemantauan langsung dari HP.</p>
-                    </div>
-                </div>
-
-                <!-- ALBUM 5: Access Point Wi-Fi -->
-                <div data-category="network" class="gallery-item bg-white border border-slate-200 rounded-2xl overflow-hidden group cursor-pointer hover:border-blue-500 hover:shadow-xl transition"
-                     data-title="Instalasi Access Point Wi-Fi Kantor" 
-                     data-badge="Jaringan & Kabel" 
-                     data-desc="Pemasangan titik Access Point (TP-Link / Ruijie) di langit-langit ruangan untuk distribusi sinyal Wi-Fi yang merata dan stabil tanpa lag."
-                     data-images="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=800&q=80, https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=800&q=80">
-                    <div class="relative overflow-hidden aspect-video bg-slate-100">
-                        <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=800&q=80" alt="Access Point" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                        <span class="photo-count-badge absolute top-3 right-3 bg-slate-900/75 backdrop-blur-sm text-white text-xs font-semibold px-2.5 py-1 rounded-lg">
-                            <i class="fa-solid fa-images mr-1"></i> 2 Foto
-                        </span>
-                        <div class="absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition flex items-end p-4">
-                            <span class="text-xs text-white font-semibold bg-slate-900/80 px-2.5 py-1 rounded-lg"><i class="fa-solid fa-magnifying-glass-plus mr-1"></i> Lihat Album Foto</span>
-                        </div>
-                    </div>
-                    <div class="p-5">
-                        <span class="text-xs font-semibold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-md border border-blue-200">Jaringan & Kabel</span>
-                        <h3 class="text-lg font-bold text-slate-900 mt-3">Instalasi Access Point Wi-Fi Kantor</h3>
-                        <p class="text-slate-600 text-sm mt-1">Cakupan sinyal luas dan konfigurasi bandwidth stabil.</p>
-                    </div>
-                </div>
-
-                <!-- ALBUM 6: Penarikan Kabel LAN -->
-                <div data-category="network" class="gallery-item bg-white border border-slate-200 rounded-2xl overflow-hidden group cursor-pointer hover:border-blue-500 hover:shadow-xl transition"
-                     data-title="Penarikan Kabel LAN & Pemasangan Pipa" 
-                     data-badge="Jaringan & Kabel" 
-                     data-desc="Pekerjaan penarikan jalur kabel jaringan LAN menggunakan pelindung pipa conduit agar instalasi terlihat rapi di dinding dan aman dalam jangka panjang."
-                     data-images="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80, https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=800&q=80">
-                    <div class="relative overflow-hidden aspect-video bg-slate-100">
-                        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80" alt="LAN Cable Installation" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                        <span class="photo-count-badge absolute top-3 right-3 bg-slate-900/75 backdrop-blur-sm text-white text-xs font-semibold px-2.5 py-1 rounded-lg">
-                            <i class="fa-solid fa-images mr-1"></i> 2 Foto
-                        </span>
-                        <div class="absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition flex items-end p-4">
-                            <span class="text-xs text-white font-semibold bg-slate-900/80 px-2.5 py-1 rounded-lg"><i class="fa-solid fa-magnifying-glass-plus mr-1"></i> Lihat Album Foto</span>
-                        </div>
-                    </div>
-                    <div class="p-5">
-                        <span class="text-xs font-semibold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-md border border-blue-200">Jaringan & Kabel</span>
-                        <h3 class="text-lg font-bold text-slate-900 mt-3">Penarikan Kabel LAN & Pemasangan Pipa</h3>
-                        <p class="text-slate-600 text-sm mt-1">Jalur kabel tertata rapi tanpa berantakan.</p>
+                        <span class="text-xs font-semibold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-md border border-blue-200">Komputer & Printer</span>
+                        <h3 class="text-lg font-bold text-slate-900 mt-3">Perawatan PC & Servis Printer Kantor</h3>
+                        <p class="text-slate-600 text-sm mt-1">Perbaikan PC lemot, instal ulang, dan maintenance printer.</p>
                     </div>
                 </div>
 
@@ -331,28 +294,20 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm hover:shadow-md transition">
-                    <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center text-xl mb-6 shadow-sm">
-                        <i class="fa-solid fa-user-gear"></i>
-                    </div>
+                <div class="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm">
+                    <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center text-xl mb-6 shadow-sm"><i class="fa-solid fa-user-gear"></i></div>
                     <h3 class="text-xl font-bold text-slate-900 mb-3">Teknisi Berpengalaman</h3>
-                    <p class="text-slate-600 text-sm leading-relaxed">Dikerjakan langsung oleh Aldo & Roni yang sudah berpengalaman bertahun-tahun di bidang hardware dan infrastruktur IT.</p>
+                    <p class="text-slate-600 text-sm leading-relaxed">Dikerjakan langsung oleh Aldo & Roni yang sudah berpengalaman di bidang hardware dan infrastruktur IT.</p>
                 </div>
-
-                <div class="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm hover:shadow-md transition">
-                    <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center text-xl mb-6 shadow-sm">
-                        <i class="fa-solid fa-handshake-angle"></i>
-                    </div>
+                <div class="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm">
+                    <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center text-xl mb-6 shadow-sm"><i class="fa-solid fa-handshake-angle"></i></div>
                     <h3 class="text-xl font-bold text-slate-900 mb-3">Pekerjaan Rapi & Bergaransi</h3>
-                    <p class="text-slate-600 text-sm leading-relaxed">Hasil instalasi kabel dijamin rapi menggunakan pipa/pelindung, serta memberikan garansi pemasangan untuk kenyamanan Anda.</p>
+                    <p class="text-slate-600 text-sm leading-relaxed">Hasil instalasi kabel dijamin rapi menggunakan pipa/pelindung, serta memberikan garansi pemasangan.</p>
                 </div>
-
-                <div class="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm hover:shadow-md transition">
-                    <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center text-xl mb-6 shadow-sm">
-                        <i class="fa-solid fa-wallet"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">Harga Transparan & Bersahabat</h3>
-                    <p class="text-slate-600 text-sm leading-relaxed">Estimasi biaya disampaikan secara jelas di awal sebelum pengerjaan dimulai, tanpa biaya tersembunyi yang memberatkan.</p>
+                <div class="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm">
+                    <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center text-xl mb-6 shadow-sm"><i class="fa-solid fa-wallet"></i></div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Harga Transparan</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">Estimasi biaya disampaikan secara jelas di awal sebelum pengerjaan dimulai.</p>
                 </div>
             </div>
         </div>
@@ -368,25 +323,22 @@
 
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 shadow-sm">
-                    <div class="w-10 h-10 bg-blue-600 text-white rounded-xl flex items-center justify-center font-bold text-sm mb-4 shadow-sm">1</div>
+                    <div class="w-10 h-10 bg-blue-600 text-white rounded-xl flex items-center justify-center font-bold text-sm mb-4">1</div>
                     <h3 class="text-lg font-bold text-slate-900 mb-2">Konsultasi Masalah</h3>
                     <p class="text-slate-600 text-sm leading-relaxed">Hubungi kami via WhatsApp ceritakan kebutuhan atau kendala perangkat IT Anda.</p>
                 </div>
-
                 <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 shadow-sm">
-                    <div class="w-10 h-10 bg-blue-600 text-white rounded-xl flex items-center justify-center font-bold text-sm mb-4 shadow-sm">2</div>
+                    <div class="w-10 h-10 bg-blue-600 text-white rounded-xl flex items-center justify-center font-bold text-sm mb-4">2</div>
                     <h3 class="text-lg font-bold text-slate-900 mb-2">Estimasi Biaya</h3>
                     <p class="text-slate-600 text-sm leading-relaxed">Kami berikan rincian estimasi biaya dan jadwal pengerjaan yang disepakati.</p>
                 </div>
-
                 <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 shadow-sm">
-                    <div class="w-10 h-10 bg-blue-600 text-white rounded-xl flex items-center justify-center font-bold text-sm mb-4 shadow-sm">3</div>
+                    <div class="w-10 h-10 bg-blue-600 text-white rounded-xl flex items-center justify-center font-bold text-sm mb-4">3</div>
                     <h3 class="text-lg font-bold text-slate-900 mb-2">Pengerjaan di Lokasi</h3>
                     <p class="text-slate-600 text-sm leading-relaxed">Tim Alron datang ke lokasi Anda untuk instalasi, setting, atau perbaikan hardware.</p>
                 </div>
-
                 <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 shadow-sm">
-                    <div class="w-10 h-10 bg-blue-600 text-white rounded-xl flex items-center justify-center font-bold text-sm mb-4 shadow-sm">4</div>
+                    <div class="w-10 h-10 bg-blue-600 text-white rounded-xl flex items-center justify-center font-bold text-sm mb-4">4</div>
                     <h3 class="text-lg font-bold text-slate-900 mb-2">Selesai & Testing</h3>
                     <p class="text-slate-600 text-sm leading-relaxed">Uji coba bersama perangkat berjalan normal, beres dan bergaransi.</p>
                 </div>
@@ -400,49 +352,45 @@
             <div class="bg-white border border-slate-200 rounded-3xl p-8 sm:p-12 shadow-xl">
                 <div class="text-center max-w-2xl mx-auto mb-10">
                     <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">Estimasi & Konsultasi Cepat</h2>
-                    <p class="text-slate-600 text-sm mt-2">Isi form singkat di bawah ini, lalu klik kirim untuk langsung terhubung ke WhatsApp kami dengan format pesan otomatis.</p>
+                    <p class="text-slate-600 text-sm mt-2">Isi form singkat di bawah ini untuk terhubung ke WhatsApp kami dengan format pesan otomatis.</p>
                 </div>
 
                 <form id="wa-form" class="space-y-6">
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         <div>
                             <label class="block text-sm font-semibold text-slate-700 mb-2">Nama Anda / Perusahaan</label>
-                            <input type="text" id="client-name" required placeholder="Contoh: Bpk. Budi" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-slate-900 focus:outline-none focus:border-blue-600 text-sm shadow-inner">
+                            <input type="text" id="client-name" required placeholder="Contoh: Bpk. Budi" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-slate-900 focus:outline-none focus:border-blue-600 text-sm">
                         </div>
                         <div>
                             <label class="block text-sm font-semibold text-slate-700 mb-2">Wilayah / Lokasi</label>
-                            <input type="text" id="client-city" required placeholder="Contoh: BSD Tangerang Selatan" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-slate-900 focus:outline-none focus:border-blue-600 text-sm shadow-inner">
+                            <input type="text" id="client-city" required placeholder="Contoh: BSD Tangerang Selatan" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-slate-900 focus:outline-none focus:border-blue-600 text-sm">
                         </div>
                     </div>
-
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         <div>
                             <label class="block text-sm font-semibold text-slate-700 mb-2">Pilih Layanan</label>
-                            <select id="service-type" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-slate-900 focus:outline-none focus:border-blue-600 text-sm shadow-inner">
+                            <select id="service-type" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-slate-900 focus:outline-none focus:border-blue-600 text-sm">
                                 <option value="Pemasangan & Setting CCTV">Pemasangan & Setting CCTV</option>
                                 <option value="Instalasi & Setting PABX">Instalasi & Setting PABX</option>
                                 <option value="Jaringan LAN & Wi-Fi">Jaringan LAN & Wi-Fi</option>
-                                <option value="IT Hardware & Server">IT Hardware & Server</option>
-                                <option value="Lainnya / Perawatan Umum">Lainnya / Perawatan Umum</option>
+                                <option value="Komputer & Printer">Komputer & Printer</option>
+                                <option value="IT Hardware & Server Lainnya">IT Hardware & Server Lainnya</option>
                             </select>
                         </div>
                         <div>
                             <label class="block text-sm font-semibold text-slate-700 mb-2">Jenis Lokasi</label>
-                            <select id="location-type" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-slate-900 focus:outline-none focus:border-blue-600 text-sm shadow-inner">
+                            <select id="location-type" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-slate-900 focus:outline-none focus:border-blue-600 text-sm">
                                 <option value="Kantor / Ruko">Kantor / Ruko</option>
                                 <option value="Gudang / Pabrik">Gudang / Pabrik</option>
                                 <option value="Rumah Tinggal">Rumah Tinggal</option>
-                                <option value="Sekolah / Instansi">Sekolah / Instansi Lainnya</option>
                             </select>
                         </div>
                     </div>
-
                     <div>
                         <label class="block text-sm font-semibold text-slate-700 mb-2">Detail / Keterangan Kebutuhan</label>
-                        <textarea id="client-notes" rows="4" placeholder="Tuliskan jumlah titik CCTV, jenis PABX, atau kendala jaringan yang ingin dikerjakan..." class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-slate-900 focus:outline-none focus:border-blue-600 text-sm shadow-inner"></textarea>
+                        <textarea id="client-notes" rows="4" placeholder="Tuliskan jumlah titik CCTV, jenis PABX, atau kendala komputer/printer..." class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-slate-900 focus:outline-none focus:border-blue-600 text-sm"></textarea>
                     </div>
-
-                    <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-4 rounded-xl shadow-lg shadow-emerald-600/20 transition flex items-center justify-center space-x-2 text-base">
+                    <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-4 rounded-xl shadow-lg transition flex items-center justify-center space-x-2 text-base">
                         <i class="fa-brands fa-whatsapp text-2xl"></i>
                         <span>Kirim Konsultasi ke WhatsApp Alron</span>
                     </button>
@@ -451,23 +399,18 @@
         </div>
     </section>
 
-    <!-- AREA LAYANAN -->
+    <!-- AREA LAYANAN & FOOTER -->
     <section id="area" class="py-16 bg-white border-t border-slate-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 class="text-xl font-bold text-slate-900 mb-4"><i class="fa-solid fa-location-dot text-blue-600 mr-2"></i> Area Jangkauan Layanan Jabodetabek</h2>
-            <p class="text-slate-600 text-sm max-w-3xl mx-auto leading-relaxed">
-                Kami melayani panggilan teknisi lapangan untuk seluruh wilayah <span class="text-slate-900 font-semibold">Jakarta, Bogor, Depok, Tangerang, dan Bekasi (Jabodetabek)</span>.
-            </p>
+            <p class="text-slate-600 text-sm max-w-3xl mx-auto leading-relaxed">Melayani panggilan teknisi lapangan untuk seluruh wilayah Jakarta, Bogor, Depok, Tangerang, dan Bekasi (Jabodetabek).</p>
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer class="bg-slate-900 text-white border-t border-slate-800 py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
             <div class="flex items-center space-x-3">
-                <div class="bg-blue-600 p-2 rounded-xl text-white">
-                    <i class="fa-solid fa-network-wired"></i>
-                </div>
+                <div class="bg-blue-600 p-2 rounded-xl text-white"><i class="fa-solid fa-network-wired"></i></div>
                 <div>
                     <span class="text-lg font-black tracking-tight text-white">ALRON <span class="text-blue-500">IT SUPPORT</span></span>
                     <span class="block text-xs text-slate-400">All-Round IT Solutions & Infrastructure</span>
@@ -480,30 +423,21 @@
         </div>
     </footer>
 
-    <!-- MODAL LIGHTBOX POPUP ALBUM PROYEK -->
+    <!-- MODAL LIGHTBOX -->
     <div id="lightbox-modal" class="fixed inset-0 z-50 bg-slate-900/85 backdrop-blur-sm hidden items-center justify-center p-4">
         <div class="bg-white border border-slate-200 rounded-3xl max-w-3xl w-full overflow-hidden relative shadow-2xl">
-            <!-- Tombol Tutup (X) -->
-            <button id="lightbox-close" class="absolute top-4 right-4 z-20 w-10 h-10 bg-slate-100/90 hover:bg-slate-200 text-slate-700 rounded-full flex items-center justify-center transition shadow">
+            <button id="lightbox-close" class="absolute top-4 right-4 z-20 w-10 h-10 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-full flex items-center justify-center transition shadow">
                 <i class="fa-solid fa-xmark text-xl"></i>
             </button>
-
-            <!-- Area Gambar & Tombol Slider khusus foto dalam Album ini -->
             <div class="relative aspect-video bg-slate-950 flex items-center justify-center">
-                <img id="lightbox-img" src="" alt="Zoom Foto" class="max-h-full max-w-full object-contain">
-                
-                <!-- Tombol Previous (Kiri) -->
-                <button id="prev-btn" class="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-11 h-11 bg-slate-900/70 hover:bg-slate-900 text-white rounded-full flex items-center justify-center transition backdrop-blur-sm">
+                <img id="lightbox-img" src="" alt="Zoom" class="max-h-full max-w-full object-contain">
+                <button id="prev-btn" class="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-11 h-11 bg-slate-900/70 hover:bg-slate-900 text-white rounded-full flex items-center justify-center transition">
                     <i class="fa-solid fa-chevron-left text-lg"></i>
                 </button>
-
-                <!-- Tombol Next (Kanan) -->
-                <button id="next-btn" class="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-11 h-11 bg-slate-900/70 hover:bg-slate-900 text-white rounded-full flex items-center justify-center transition backdrop-blur-sm">
+                <button id="next-btn" class="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-11 h-11 bg-slate-900/70 hover:bg-slate-900 text-white rounded-full flex items-center justify-center transition">
                     <i class="fa-solid fa-chevron-right text-lg"></i>
                 </button>
             </div>
-
-            <!-- Keterangan Detail Proyek -->
             <div class="p-6">
                 <div class="flex items-center justify-between">
                     <span id="lightbox-badge" class="text-xs font-semibold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-md border border-blue-200"></span>
@@ -512,7 +446,7 @@
                 <h3 id="lightbox-title" class="text-xl font-bold text-slate-900 mt-3"></h3>
                 <p id="lightbox-desc" class="text-slate-600 text-sm mt-2 leading-relaxed"></p>
                 <div class="mt-6 pt-4 border-t border-slate-200 flex justify-end">
-                    <a id="lightbox-wa-btn" href="#" target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white px-5 py-2.5 rounded-xl text-sm font-semibold flex items-center space-x-2 transition shadow-lg shadow-emerald-600/20">
+                    <a id="lightbox-wa-btn" href="#" target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white px-5 py-2.5 rounded-xl text-sm font-semibold flex items-center space-x-2 transition shadow-lg">
                         <i class="fa-brands fa-whatsapp text-lg"></i>
                         <span>Tanya Layanan Ini via WhatsApp</span>
                     </a>
@@ -521,8 +455,72 @@
         </div>
     </div>
 
-    <!-- JAVASCRIPT INTERACTIVE ALBUM PROYEK -->
+    <!-- PUSAT DATA ALBUM & SKRIP INTERAKTIF -->
     <script>
+        const albumData = {
+            "proyek-cctv-gudang": {
+                badge: "CCTV & NVR",
+                items: [
+                    {
+                        img: "https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=800&q=80",
+                        title: "Setup CCTV di Klinik Medis Semarang",
+                        desc: "Pemasangan kamera pengawas high-definition untuk area pendaftaran dan lorong medis di klinik wilayah Semarang."
+                    },
+                    {
+                        img: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80",
+                        title: "Konfigurasi NVR & Setting Online HP",
+                        desc: "Pengujian dan sinkronisasi tampilan kamera klinik agar bisa dipantau langsung jarak jauh via handphone pemilik."
+                    },
+                    {
+                        img: "https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=800&q=80",
+                        title: "Jalur Kabel Rapih Area Gudang Logistik",
+                        desc: "Pemasangan pelindung pipa conduit di area gudang untuk mengamankan kabel dari gigitan tikus dan cuaca."
+                    }
+                ]
+            },
+            "proyek-rack-server": {
+                badge: "Jaringan & Kabel",
+                items: [
+                    {
+                        img: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=800&q=80",
+                        title: "Cable Management Rack Server Kantor BSD",
+                        desc: "Penataan rapi kabel UTP dan patch panel di ruang server kantor klien kawasan BSD Tangerang Selatan."
+                    },
+                    {
+                        img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80",
+                        title: "Pemasangan Jalur Pipa Kabel Jaringan",
+                        desc: "Pekerjaan penarikan jalur kabel LAN menggunakan pipa pelindung agar ruangan kantor tetap estetis."
+                    }
+                ]
+            },
+            "proyek-pabx": {
+                badge: "PABX",
+                items: [
+                    {
+                        img: "https://images.unsplash.com/photo-1596526131083-e8c633c948d2?auto=format&fit=crop&w=800&q=80",
+                        title: "Instalasi Sentral PABX Panasonic",
+                        desc: "Konfigurasi unit utama PABX dan pengujian jalur extension untuk komunikasi antar ruang kantor."
+                    }
+                ]
+            },
+            "proyek-komputer-printer": {
+                badge: "Komputer & Printer",
+                items: [
+                    {
+                        img: "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?auto=format&fit=crop&w=800&q=80",
+                        title: "Perawatan & Upgrade PC Kantor",
+                        desc: "Pembersihan komponen hardware, upgrade SSD, dan instalasi ulang sistem operasi untuk mengoptimalkan kinerja komputer kerja."
+                    },
+                    {
+                        img: "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?auto=format&fit=crop&w=800&q=80",
+                        title: "Servis & Maintenance Printer Kantor",
+                        desc: "Perbaikan printer bermasalah, infus tinta, mengatasi paper jam, serta perawatan komponen cetak agar operasional kantor lancar."
+                    }
+                ]
+            }
+        };
+
+        // Mobile Menu Toggle
         const menuBtn = document.getElementById('menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         const menuIcon = document.getElementById('menu-icon');
@@ -533,8 +531,8 @@
             menuIcon.classList.toggle('fa-xmark');
         });
 
-        const waForm = document.getElementById('wa-form');
-        waForm.addEventListener('submit', function(e) {
+        // Form WA Handler
+        document.getElementById('wa-form').addEventListener('submit', function(e) {
             e.preventDefault();
             const name = document.getElementById('client-name').value.trim();
             const city = document.getElementById('client-city').value.trim();
@@ -547,15 +545,23 @@
             message += `* Wilayah:* ${city}\n`;
             message += `* Layanan:* ${service}\n`;
             message += `* Jenis Lokasi:* ${locationType}\n`;
-            if (notes) {
-                message += `* Detail/Keluhan:* ${notes}\n`;
-            }
+            if (notes) message += `* Detail/Keluhan:* ${notes}\n`;
             message += `\nMohon info jadwal & estimasinya. Terima kasih.`;
 
-            const encodedMessage = encodeURIComponent(message);
-            const phoneNumber = '6281213053566';
-            const waUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-            window.open(waUrl, '_blank', 'noopener,noreferrer');
+            window.open(`https://wa.me/6281213053566?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer');
+        });
+
+        // Horizontal Slider Navigation (Tombol Geser Samping)
+        const galleryContainer = document.getElementById('gallery-container');
+        const sliderPrev = document.getElementById('slider-prev');
+        const sliderNext = document.getElementById('slider-next');
+
+        sliderNext.addEventListener('click', () => {
+            galleryContainer.scrollBy({ left: 380, behavior: 'smooth' });
+        });
+
+        sliderPrev.addEventListener('click', () => {
+            galleryContainer.scrollBy({ left: -380, behavior: 'smooth' });
         });
 
         // Filter Kategori Galeri
@@ -572,21 +578,20 @@
                 btn.classList.add('bg-blue-600', 'text-white', 'shadow-md');
 
                 const filterValue = btn.getAttribute('data-filter');
-
                 galleryItems.forEach(item => {
                     const itemCategory = item.getAttribute('data-category');
                     if (filterValue === 'all' || filterValue === itemCategory) {
                         item.classList.remove('hidden');
-                        item.classList.add('flex');
+                        item.classList.add('flex-shrink-0');
                     } else {
                         item.classList.add('hidden');
-                        item.classList.remove('flex');
+                        item.classList.remove('flex-shrink-0');
                     }
                 });
             });
         });
 
-        // Lightbox Album Proyek Setup
+        // Lightbox Logic
         const lightboxModal = document.getElementById('lightbox-modal');
         const lightboxClose = document.getElementById('lightbox-close');
         const lightboxImg = document.getElementById('lightbox-img');
@@ -598,72 +603,60 @@
         const prevBtn = document.getElementById('prev-btn');
         const nextBtn = document.getElementById('next-btn');
 
-        let currentAlbumImages = [];
-        let currentPhotoIndex = 0;
+        let activeItems = [];
+        let currentIndex = 0;
+        let activeBadge = "";
 
-        function updateAlbumPhoto(index) {
-            if (currentAlbumImages.length === 0) return;
+        function renderPhoto(index) {
+            if (activeItems.length === 0) return;
+            if (index < 0) index = activeItems.length - 1;
+            if (index >= activeItems.length) index = 0;
+            currentIndex = index;
 
-            if (index < 0) index = currentAlbumImages.length - 1;
-            if (index >= currentAlbumImages.length) index = 0;
-            currentPhotoIndex = index;
+            const current = activeItems[currentIndex];
+            lightboxImg.src = current.img;
+            lightboxImg.alt = current.title;
+            lightboxTitle.textContent = current.title;
+            lightboxDesc.textContent = current.desc;
+            lightboxBadge.textContent = activeBadge;
+            lightboxCounter.textContent = `Foto ${currentIndex + 1} dari ${activeItems.length}`;
 
-            lightboxImg.src = currentAlbumImages[currentPhotoIndex];
-            lightboxCounter.textContent = `Foto ${currentPhotoIndex + 1} dari ${currentAlbumImages.length}`;
-
-            // Sembunyikan panah jika hanya ada 1 foto
-            if (currentAlbumImages.length <= 1) {
+            if (activeItems.length <= 1) {
                 prevBtn.classList.add('hidden');
                 nextBtn.classList.add('hidden');
             } else {
                 prevBtn.classList.remove('hidden');
                 nextBtn.classList.remove('hidden');
             }
+
+            const waText = `Halo Alron IT Support, saya melihat dokumentasi proyek "${current.title}" di website Anda dan tertarik konsultasi pemasangannya.`;
+            lightboxWaBtn.href = `https://wa.me/6281213053566?text=${encodeURIComponent(waText)}`;
         }
 
-        // Pasang klik ke setiap kartu album proyek
-        galleryItems.forEach((item) => {
-            // Update otomatis badge jumlah foto di kartu depan
-            const rawImages = item.getAttribute('data-images');
-            const imagesArray = rawImages ? rawImages.split(',').map(s => s.trim()).filter(Boolean) : [];
-            const countBadge = item.querySelector('.photo-count-badge');
-            if (countBadge && imagesArray.length > 0) {
-                countBadge.innerHTML = `<i class="fa-solid fa-images mr-1"></i> ${imagesArray.length} Foto`;
+        galleryItems.forEach(item => {
+            const projectId = item.getAttribute('data-project');
+            
+            // Otomatis update jumlah foto di badge kartu depan
+            if (albumData[projectId]) {
+                const count = albumData[projectId].items.length;
+                const badgeEl = item.querySelector('.fa-images').parentNode;
+                if (badgeEl) badgeEl.innerHTML = `<i class="fa-solid fa-images mr-1"></i> ${count} Foto`;
             }
 
             item.addEventListener('click', () => {
-                const title = item.getAttribute('data-title');
-                const badge = item.getAttribute('data-badge');
-                const desc = item.getAttribute('data-desc');
-
-                currentAlbumImages = imagesArray.length > 0 ? imagesArray : [item.querySelector('img').src];
-                currentPhotoIndex = 0;
-
-                lightboxTitle.textContent = title;
-                lightboxBadge.textContent = badge;
-                lightboxDesc.textContent = desc;
-                lightboxImg.alt = title;
-
-                const waText = `Halo Alron IT Support, saya melihat dokumentasi proyek "${title}" di website Anda dan tertarik konsultasi pemasangannya.`;
-                lightboxWaBtn.href = `https://wa.me/6281213053566?text=${encodeURIComponent(waText)}`;
-
-                updateAlbumPhoto(0);
-
-                lightboxModal.classList.remove('hidden');
-                lightboxModal.classList.add('flex');
-                document.body.style.overflow = 'hidden';
+                if (albumData[projectId]) {
+                    activeItems = albumData[projectId].items;
+                    activeBadge = albumData[projectId].badge;
+                    renderPhoto(0);
+                    lightboxModal.classList.remove('hidden');
+                    lightboxModal.classList.add('flex');
+                    document.body.style.overflow = 'hidden';
+                }
             });
         });
 
-        nextBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            updateAlbumPhoto(currentPhotoIndex + 1);
-        });
-
-        prevBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            updateAlbumPhoto(currentPhotoIndex - 1);
-        });
+        nextBtn.addEventListener('click', (e) => { e.stopPropagation(); renderPhoto(currentIndex + 1); });
+        prevBtn.addEventListener('click', (e) => { e.stopPropagation(); renderPhoto(currentIndex - 1); });
 
         function closeLightbox() {
             lightboxModal.classList.add('hidden');
@@ -672,15 +665,12 @@
         }
 
         lightboxClose.addEventListener('click', closeLightbox);
-        lightboxModal.addEventListener('click', (e) => {
-            if (e.target === lightboxModal) closeLightbox();
-        });
-
+        lightboxModal.addEventListener('click', (e) => { if (e.target === lightboxModal) closeLightbox(); });
         document.addEventListener('keydown', (e) => {
             if (!lightboxModal.classList.contains('hidden')) {
                 if (e.key === 'Escape') closeLightbox();
-                if (e.key === 'ArrowRight') updateAlbumPhoto(currentPhotoIndex + 1);
-                if (e.key === 'ArrowLeft') updateAlbumPhoto(currentPhotoIndex - 1);
+                if (e.key === 'ArrowRight') renderPhoto(currentIndex + 1);
+                if (e.key === 'ArrowLeft') renderPhoto(currentIndex - 1);
             }
         });
     </script>
